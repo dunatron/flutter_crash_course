@@ -169,15 +169,34 @@ Every Widget is essentially a Dart class that has a build method
 
 every Widget now in Flutter must extend either `StatelessWidget` or `StatefulWidget` which will force you to add a `build` method which is responsible for drawing a widget which controls the pixels
 
+- `final` or run time constant. used when you assign a value then it does not change, i.e when it runs it locks in a value at runtime
+- `const` or compile time constant. is used when the programme runs and already has value from the code
+
 ### StatelessWidget
 
+These Widgets do not contain or hold state. We get the data it needs to render itself from outside of the Widget i.e we pass it in
+
+- Data can change externally which would reRender when the input changes
+- e.g. a `Text` Widget is a Stateless component as it holds no state itself and gets its string value passed in from outside and then renders that
+
 ### StatefulWidget
+
+The same as a stateless Widget except that it can hold internal state which can change from within the Widget and will also reRender the Widget. It has Two classes, one holds the state which is persistent
+
+- ReRenders when input data or local state changes
 
 ## Different Types of widgets
 
 - `Output and Input(Visible)` related to use input and outputing data like buttons, texts and cards
   - drawn onto the screen and is what the user sees
   - e.g. `RasiedButton(), Text(), Card()`
+- `Layout & Control (Invisible)` control the layout and we dont see but help with structuring content
+  - e.g. `Row(), Column(), ListView()`
+  - Give your app structure and control how visible widgets are drawn onto the screen (indirectly visible)
+
+## Useful Widgets
+
+`Column()` A layout Widget to help other widgets inside render in a column
 
 # Learing resource
 

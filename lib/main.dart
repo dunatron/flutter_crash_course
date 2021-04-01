@@ -1,8 +1,46 @@
 import 'package:flutter/material.dart';
 
+import './quiz.dart';
+import './result.dart';
+
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  final _questions = const [
+    {
+      'questionText': 'What\'s your favourite color?',
+      'answers': ['Black', 'Red', 'Green', 'White']
+    },
+    {
+      'questionText': 'What\'s your favourite animal?',
+      'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion']
+    },
+    {
+      'questionText': 'Who is your favourite?',
+      'answers': ['MetaTron', 'MetaTron', 'MetaTron', 'MetaTron']
+    }
+  ];
+  var _questionIndex = 0;
+
+  void _answerQuestion() {
+    setState(() {
+      _questionIndex = _questionIndex + 1;
+    });
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,11 +49,14 @@ class MyApp extends StatelessWidget {
           elevation: 8,
           title: Text('Flutter Crash Course'),
         ),
-        // body: Text('DEFAULT BODY'),
-        body: Card(
-          elevation: 10,
-          child: Text("A MD Card With TExt"),
-        ),
+        body: _questionIndex < _questions.length
+            // ? Quiz( _answerQuestion, _questions, _questionIndex)
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questions: _questions,
+                questionIndex: _questionIndex,
+              )
+            : Result(resetQuiz: _resetQuiz),
       ),
     );
   }
